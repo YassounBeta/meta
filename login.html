@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem" style="display: none;">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link active" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="auth-section">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="auth-card rounded-4 p-4 p-md-5">
+                        <h2 class="auth-title text-center mb-4">Connexion</h2>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="password" placeholder="Votre mot de passe" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+                            </div>
+                            <div id="loginError" class="alert alert-danger" style="display: none;"></div>
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill btn-lg">Se connecter</button>
+                            <div class="admin-login-section mt-3">
+                                <p class="text-center">
+                                    <a href="#" id="adminLoginLink">Connexion administrateur</a>
+                                </p>
+                            </div>
+                        </form>
+                        <div class="mt-4 text-center">
+                            <p>Pas encore de compte? <a href="register.html" class="auth-link">S'inscrire</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules au Maroc.
+                    </p>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                        <li><a href="register.html">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope me-2"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Casablanca, Maroc</li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2023 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                // Redirect to dashboard if already logged in
+                window.location.href = 'dashboard.html';
+            }
+
+            // Toggle password visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+
+            // Login form submission
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const loginError = document.getElementById('loginError');
+                
+                // Get users from localStorage
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                
+                // Find user
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    // Set current user
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    // Show success message
+                    showToast('Connexion réussie! Redirection...');
+                    
+                    // Redirect after delay
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                } else {
+                    // Show error
+                    loginError.textContent = 'Email ou mot de passe incorrect.';
+                    loginError.style.display = 'block';
+                }
+            });
+
+            // Admin login link
+            document.getElementById('adminLoginLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Admin credentials (front-end only, no real security)
+                const adminEmail = 'admin@afrilavage.com';
+                const adminPassword = 'admin123';
+                
+                // Set admin user
+                localStorage.setItem('currentUser', JSON.stringify({
+                    name: 'Administrateur',
+                    email: adminEmail,
+                    isAdmin: true
+                }));
+                
+                // Show success message
+                showToast('Connexion admin réussie! Redirection...');
+                
+                // Redirect to admin dashboard
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

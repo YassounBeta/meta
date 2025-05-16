@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Qui sommes-nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem" style="display: none;">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header py-5 mt-5">
+        <div class="container">
+            <h1 class="display-4 animate-slide-up">Nos Services</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Services</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Section Pressing -->
+    <section class="service-detail-section py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 animate-slide-left">
+                    <img src="https://pixabay.com/get/g7630c3ae62f05f93b1a213d6e28991fdc6b939065f6ec9239b45dbb6c163bc0cd70d5aaddfc024f69a568eb33ff56ebd4d87aa15f2d501584ac4894f40133e15_1280.jpg" alt="Service de pressing" class="img-fluid rounded-4 service-detail-img">
+                </div>
+                <div class="col-lg-6 animate-slide-right">
+                    <div class="service-detail-content">
+                        <div class="service-icon-large mb-3">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h2 class="section-title">Service de Pressing</h2>
+                        <p class="lead text-primary mb-3">Une solution professionnelle pour tous vos vêtements</p>
+                        <p>Notre service de pressing de qualité supérieure prend soin de tous vos vêtements, des plus simples aux plus délicats. Nos experts utilisent des techniques avancées et des produits écologiques pour garantir des résultats impeccables tout en préservant la qualité et la durabilité de vos textiles.</p>
+                        
+                        <div class="service-features mt-4">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Nettoyage à sec professionnel</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lavage délicat pour textiles sensibles</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Repassage de qualité hôtelière</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Traitement des taches difficiles</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ramassage et livraison à domicile</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-options mt-4">
+                            <div class="option-badge">Express (12h)</div>
+                            <div class="option-badge">Standard (24h)</div>
+                            <div class="option-badge">Abonnement mensuel</div>
+                        </div>
+                        
+                        <a href="order.html?service=pressing" class="btn btn-primary btn-lg rounded-pill mt-4">Commander ce service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="price-table-container animate-fade-in">
+                        <h3 class="text-center mb-4">Tarifs de Pressing</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover price-table">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Article</th>
+                                        <th>Prix Standard</th>
+                                        <th>Prix Express</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chemise / Chemisier</td>
+                                        <td>25 DH</td>
+                                        <td>35 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pantalon</td>
+                                        <td>30 DH</td>
+                                        <td>40 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Costume complet</td>
+                                        <td>120 DH</td>
+                                        <td>150 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Robe simple</td>
+                                        <td>60 DH</td>
+                                        <td>80 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Robe de soirée</td>
+                                        <td>100-250 DH</td>
+                                        <td>130-300 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Manteau</td>
+                                        <td>80 DH</td>
+                                        <td>100 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Veste / Blazer</td>
+                                        <td>70 DH</td>
+                                        <td>90 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Caftan / Jellaba</td>
+                                        <td>80-180 DH</td>
+                                        <td>100-220 DH</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="price-note text-center">
+                            <small>* Les prix peuvent varier selon le matériau, la complexité et le niveau de soin requis.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Lavage Auto -->
+    <section class="service-detail-section py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 order-lg-2 animate-slide-right">
+                    <img src="https://pixabay.com/get/ge60f5d8fc21ce014e74a7bb22964a2421137144ba6ebbd54c70697abebecc79ac0e19ae252a146ae17e0c7fc77fd94057ad20a6380456f6e3be17deea5150bd8_1280.jpg" alt="Lavage auto" class="img-fluid rounded-4 service-detail-img">
+                </div>
+                <div class="col-lg-6 order-lg-1 animate-slide-left">
+                    <div class="service-detail-content">
+                        <div class="service-icon-large mb-3">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h2 class="section-title">Lavage de Véhicules</h2>
+                        <p class="lead text-primary mb-3">Un service de lavage auto à domicile professionnel</p>
+                        <p>Notre service de lavage automobile vient directement à vous, éliminant le besoin de vous déplacer. Nos équipes utilisent des techniques professionnelles et des produits de qualité supérieure pour redonner à votre véhicule son éclat d'origine, à l'intérieur comme à l'extérieur.</p>
+                        
+                        <div class="service-features mt-4">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lavage extérieur complet</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Nettoyage intérieur approfondi</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Lustrage et protection</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Traitement des jantes et pneus</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Service à domicile ou au bureau</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-options mt-4">
+                            <div class="option-badge">Express (12h)</div>
+                            <div class="option-badge">Standard (24h)</div>
+                            <div class="option-badge">Abonnement mensuel</div>
+                        </div>
+                        
+                        <a href="order.html?service=car" class="btn btn-primary btn-lg rounded-pill mt-4">Commander ce service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="price-table-container animate-fade-in">
+                        <h3 class="text-center mb-4">Tarifs de Lavage Auto</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover price-table">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Type de véhicule</th>
+                                        <th>Lavage Basique</th>
+                                        <th>Lavage Premium</th>
+                                        <th>Lavage Complet</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Petite voiture</td>
+                                        <td>70 DH</td>
+                                        <td>120 DH</td>
+                                        <td>200 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Berline / Moyenne</td>
+                                        <td>90 DH</td>
+                                        <td>150 DH</td>
+                                        <td>250 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SUV / 4x4</td>
+                                        <td>110 DH</td>
+                                        <td>180 DH</td>
+                                        <td>300 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monospace / Minivan</td>
+                                        <td>130 DH</td>
+                                        <td>200 DH</td>
+                                        <td>350 DH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Utilitaire léger</td>
+                                        <td>150 DH</td>
+                                        <td>230 DH</td>
+                                        <td>380 DH</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="price-note text-center">
+                            <small>* Les prix varient selon le type de lavage choisi. Le lavage basique inclut l'extérieur, le premium ajoute l'intérieur, et le complet comprend un traitement approfondi de protection.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Types de service -->
+    <section class="service-types-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center animate-slide-up">
+                    <h2 class="section-title">Types de services disponibles</h2>
+                    <p class="lead mb-5">Adaptés à vos besoins et à votre emploi du temps</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4 animate-fade-in stagger-1">
+                    <div class="service-type-card h-100">
+                        <div class="service-type-icon">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                        <h3 class="service-type-title">Service Express</h3>
+                        <p class="service-type-desc">Notre service express vous garantit une prise en charge et une livraison dans les 12 heures. Idéal pour les urgences et les besoins immédiats.</p>
+                        <ul class="service-type-features">
+                            <li>Délai de 12 heures</li>
+                            <li>Disponible 7j/7</li>
+                            <li>Ramassage et livraison prioritaires</li>
+                            <li>Notification en temps réel</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 animate-fade-in stagger-2">
+                    <div class="service-type-card h-100">
+                        <div class="service-type-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="service-type-title">Service Standard</h3>
+                        <p class="service-type-desc">Notre service standard offre un excellent rapport qualité-prix avec un délai de livraison de 24 heures pour tous vos besoins de lavage réguliers.</p>
+                        <ul class="service-type-features">
+                            <li>Délai de 24 heures</li>
+                            <li>Tarifs avantageux</li>
+                            <li>Service complet</li>
+                            <li>Planification flexible</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 animate-fade-in stagger-3">
+                    <div class="service-type-card h-100">
+                        <div class="service-type-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3 class="service-type-title">Abonnements</h3>
+                        <p class="service-type-desc">Nos formules d'abonnement sont idéales pour les utilisateurs réguliers, offrant des économies substantielles et des avantages exclusifs.</p>
+                        <ul class="service-type-features">
+                            <li>Réduction jusqu'à 25%</li>
+                            <li>Créneaux prioritaires</li>
+                            <li>Service de conciergerie</li>
+                            <li>Facturation mensuelle simplifiée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Abonnements -->
+    <section class="subscriptions-section py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center animate-slide-up">
+                    <h2 class="section-title">Nos formules d'abonnement</h2>
+                    <p class="lead mb-5">Des solutions économiques pour vos besoins réguliers</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4 animate-fade-in stagger-1">
+                    <div class="subscription-card h-100">
+                        <div class="subscription-header">
+                            <h3 class="subscription-title">Formule Basique</h3>
+                            <div class="subscription-price">
+                                <span class="price-amount">300 DH</span>
+                                <span class="price-period">/ mois</span>
+                            </div>
+                        </div>
+                        <div class="subscription-body">
+                            <ul class="subscription-features">
+                                <li><i class="fas fa-check"></i> 4 pressings standards par mois</li>
+                                <li><i class="fas fa-check"></i> 2 lavages auto basiques par mois</li>
+                                <li><i class="fas fa-check"></i> Ramassage et livraison inclus</li>
+                                <li><i class="fas fa-check"></i> 10% de réduction sur les services supplémentaires</li>
+                                <li><i class="fas fa-times"></i> Service prioritaire</li>
+                                <li><i class="fas fa-times"></i> Conciergerie personnalisée</li>
+                            </ul>
+                            <a href="order.html?subscription=basic" class="btn btn-outline-primary btn-lg rounded-pill mt-3 w-100">Choisir cette formule</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 animate-fade-in stagger-2">
+                    <div class="subscription-card premium-card h-100">
+                        <div class="popular-badge">Le plus populaire</div>
+                        <div class="subscription-header">
+                            <h3 class="subscription-title">Formule Premium</h3>
+                            <div class="subscription-price">
+                                <span class="price-amount">500 DH</span>
+                                <span class="price-period">/ mois</span>
+                            </div>
+                        </div>
+                        <div class="subscription-body">
+                            <ul class="subscription-features">
+                                <li><i class="fas fa-check"></i> 8 pressings standards par mois</li>
+                                <li><i class="fas fa-check"></i> 4 lavages auto basiques par mois</li>
+                                <li><i class="fas fa-check"></i> Ramassage et livraison inclus</li>
+                                <li><i class="fas fa-check"></i> 15% de réduction sur les services supplémentaires</li>
+                                <li><i class="fas fa-check"></i> Service prioritaire</li>
+                                <li><i class="fas fa-times"></i> Conciergerie personnalisée</li>
+                            </ul>
+                            <a href="order.html?subscription=premium" class="btn btn-primary btn-lg rounded-pill mt-3 w-100">Choisir cette formule</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4 animate-fade-in stagger-3">
+                    <div class="subscription-card h-100">
+                        <div class="subscription-header">
+                            <h3 class="subscription-title">Formule Entreprise</h3>
+                            <div class="subscription-price">
+                                <span class="price-amount">800 DH</span>
+                                <span class="price-period">/ mois</span>
+                            </div>
+                        </div>
+                        <div class="subscription-body">
+                            <ul class="subscription-features">
+                                <li><i class="fas fa-check"></i> 12 pressings standards par mois</li>
+                                <li><i class="fas fa-check"></i> 6 lavages auto premium par mois</li>
+                                <li><i class="fas fa-check"></i> Ramassage et livraison inclus</li>
+                                <li><i class="fas fa-check"></i> 25% de réduction sur les services supplémentaires</li>
+                                <li><i class="fas fa-check"></i> Service prioritaire</li>
+                                <li><i class="fas fa-check"></i> Conciergerie personnalisée</li>
+                            </ul>
+                            <a href="order.html?subscription=business" class="btn btn-outline-primary btn-lg rounded-pill mt-3 w-100">Choisir cette formule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section CTA -->
+    <section class="cta-section py-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 animate-fade-in">
+                    <h2 class="section-title">Prêt à profiter de nos services?</h2>
+                    <p class="lead mb-4">Commandez dès maintenant et expérimentez la qualité Afrilavage.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="order.html" class="btn btn-primary btn-lg">Commander maintenant</a>
+                        <a href="contact.html" class="btn btn-outline-primary btn-lg">Nous contacter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0 animate-fade-in">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules partout au Maroc. La qualité et la rapidité sont nos priorités pour vous satisfaire pleinement.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0 animate-fade-in stagger-1">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Nos services</a></li>
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                        <li><a href="services.html#abonnements">Abonnements</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0 animate-fade-in stagger-2">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="about.html">Qui sommes-nous</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 animate-fade-in stagger-3">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Casablanca, Maroc</li>
+                        <li><i class="fas fa-clock"></i> Lun-Sam: 8h-20h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2025 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+</body>
+</html>

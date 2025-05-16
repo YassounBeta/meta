@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-body">
+    <div class="admin-wrapper">
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <h1 class="admin-logo">Afrilavage</h1>
+                <span class="admin-label">Administration</span>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-tab="dashboard">
+                    <a href="#dashboard"><i class="fas fa-chart-line"></i> Tableau de bord</a>
+                </li>
+                <li class="menu-item" data-tab="orders">
+                    <a href="#orders"><i class="fas fa-list-alt"></i> Commandes</a>
+                </li>
+                <li class="menu-item" data-tab="users">
+                    <a href="#users"><i class="fas fa-users"></i> Utilisateurs</a>
+                </li>
+                <li class="menu-item" data-tab="services">
+                    <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+                </li>
+                <li class="menu-item">
+                    <a href="index.html"><i class="fas fa-home"></i> Retour au site</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" id="adminLogoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <main class="admin-main">
+            <header class="admin-header">
+                <button class="toggle-sidebar" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="admin-user">
+                    <span class="user-greeting">Bonjour, <span id="adminName">Administrateur</span></span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="admin-content">
+                <!-- Dashboard Tab -->
+                <div class="admin-tab active" id="dashboardTab">
+                    <h2 class="content-title">Tableau de bord</h2>
+                    
+                    <div class="row summary-cards">
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="summary-card bg-primary text-white">
+                                <div class="summary-icon">
+                                    <i class="fas fa-list-alt"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <h3 class="summary-number" id="totalOrdersCount">0</h3>
+                                    <p class="summary-label">Commandes totales</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="summary-card bg-success text-white">
+                                <div class="summary-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <h3 class="summary-number" id="totalUsersCount">0</h3>
+                                    <p class="summary-label">Utilisateurs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="summary-card bg-warning text-white">
+                                <div class="summary-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <h3 class="summary-number" id="pendingOrdersCount">0</h3>
+                                    <p class="summary-label">Commandes en cours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="summary-card bg-info text-white">
+                                <div class="summary-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <h3 class="summary-number" id="totalRevenue">0 DH</h3>
+                                    <p class="summary-label">Chiffre d'affaires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="content-card">
+                                <h3 class="card-title">Répartition des services</h3>
+                                <div class="chart-container">
+                                    <div class="services-chart">
+                                        <div class="chart-item" id="pressingChart">
+                                            <div class="chart-label">Pressing</div>
+                                            <div class="chart-bar">
+                                                <div class="chart-fill bg-primary" style="width: 0%;"></div>
+                                            </div>
+                                            <div class="chart-value" id="pressingValue">0%</div>
+                                        </div>
+                                        <div class="chart-item" id="carWashChart">
+                                            <div class="chart-label">Lavage Auto</div>
+                                            <div class="chart-bar">
+                                                <div class="chart-fill bg-success" style="width: 0%;"></div>
+                                            </div>
+                                            <div class="chart-value" id="carWashValue">0%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="content-card">
+                                <h3 class="card-title">Formules</h3>
+                                <div class="chart-container">
+                                    <div class="services-chart">
+                                        <div class="chart-item" id="expressChart">
+                                            <div class="chart-label">Express</div>
+                                            <div class="chart-bar">
+                                                <div class="chart-fill bg-warning" style="width: 0%;"></div>
+                                            </div>
+                                            <div class="chart-value" id="expressValue">0%</div>
+                                        </div>
+                                        <div class="chart-item" id="standardChart">
+                                            <div class="chart-label">Standard</div>
+                                            <div class="chart-bar">
+                                                <div class="chart-fill bg-info" style="width: 0%;"></div>
+                                            </div>
+                                            <div class="chart-value" id="standardValue">0%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="content-card">
+                                <h3 class="card-title">Commandes récentes</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client</th>
+                                                <th>Service</th>
+                                                <th>Date</th>
+                                                <th>Statut</th>
+                                                <th>Montant</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentOrdersTable">
+                                            <tr>
+                                                <td colspan="6" class="text-center">Aucune commande récente</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Orders Tab -->
+                <div class="admin-tab" id="ordersTab">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+                        <h2 class="content-title mb-3 mb-md-0">Gestion des commandes</h2>
+                        <div class="admin-actions">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="orderSearchInput" placeholder="Rechercher...">
+                                <button class="btn btn-outline-primary" type="button" id="orderSearchBtn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="filter-tabs mb-3">
+                            <button class="filter-tab active" data-filter="all">Toutes</button>
+                            <button class="filter-tab" data-filter="processing">En traitement</button>
+                            <button class="filter-tab" data-filter="washing">En lavage</button>
+                            <button class="filter-tab" data-filter="delivery">En livraison</button>
+                            <button class="filter-tab" data-filter="completed">Livrées</button>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Client</th>
+                                        <th>Service</th>
+                                        <th>Adresse</th>
+                                        <th>Date</th>
+                                        <th>Statut</th>
+                                        <th>Montant</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTable">
+                                    <tr>
+                                        <td colspan="8" class="text-center">Chargement des commandes...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="admin-tab" id="usersTab">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+                        <h2 class="content-title mb-3 mb-md-0">Gestion des utilisateurs</h2>
+                        <div class="admin-actions">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="userSearchInput" placeholder="Rechercher...">
+                                <button class="btn btn-outline-primary" type="button" id="userSearchBtn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th>Commandes</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTable">
+                                    <tr>
+                                        <td colspan="6" class="text-center">Chargement des utilisateurs...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services Tab -->
+                <div class="admin-tab" id="servicesTab">
+                    <h2 class="content-title mb-4">Gestion des services</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="content-card">
+                                <h3 class="card-title d-flex justify-content-between align-items-center">
+                                    <span>Pressing</span>
+                                    <span class="service-status active">Actif</span>
+                                </h3>
+                                <div class="service-details">
+                                    <div class="price-item">
+                                        <span class="price-label">Prix standard:</span>
+                                        <span class="price-value">50 DH</span>
+                                    </div>
+                                    <div class="price-item">
+                                        <span class="price-label">Prix express:</span>
+                                        <span class="price-value">80 DH</span>
+                                    </div>
+                                    <div class="service-description mt-3">
+                                        <p>Service de nettoyage et repassage professionnel pour tous types de vêtements et textiles.</p>
+                                    </div>
+                                    <div class="service-stats mt-3">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Commandes:</span>
+                                            <span class="stat-value" id="pressingOrdersCount">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Revenus:</span>
+                                            <span class="stat-value" id="pressingRevenue">0 DH</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service-actions mt-3">
+                                    <button class="btn btn-outline-primary" id="editPressingBtn">Modifier</button>
+                                    <button class="btn btn-outline-danger" id="togglePressingBtn">Désactiver</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="content-card">
+                                <h3 class="card-title d-flex justify-content-between align-items-center">
+                                    <span>Lavage Auto</span>
+                                    <span class="service-status active">Actif</span>
+                                </h3>
+                                <div class="service-details">
+                                    <div class="price-item">
+                                        <span class="price-label">Prix standard:</span>
+                                        <span class="price-value">100 DH</span>
+                                    </div>
+                                    <div class="price-item">
+                                        <span class="price-label">Prix express:</span>
+                                        <span class="price-value">130 DH</span>
+                                    </div>
+                                    <div class="service-description mt-3">
+                                        <p>Service de lavage complet pour véhicules, intérieur et extérieur, avec finition professionnelle.</p>
+                                    </div>
+                                    <div class="service-stats mt-3">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Commandes:</span>
+                                            <span class="stat-value" id="carOrdersCount">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Revenus:</span>
+                                            <span class="stat-value" id="carRevenue">0 DH</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service-actions mt-3">
+                                    <button class="btn btn-outline-primary" id="editCarBtn">Modifier</button>
+                                    <button class="btn btn-outline-danger" id="toggleCarBtn">Désactiver</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Order Status Modal -->
+    <div class="modal fade" id="orderStatusModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mettre à jour le statut</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Commande #<span id="updateOrderId">-</span></p>
+                    <div class="mb-3">
+                        <label for="orderStatusSelect" class="form-label">Statut</label>
+                        <select class="form-select" id="orderStatusSelect">
+                            <option value="En cours de traitement">En cours de traitement</option>
+                            <option value="Lavage en cours">Lavage en cours</option>
+                            <option value="En livraison">En livraison</option>
+                            <option value="Livré">Livré</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="saveStatusBtn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Service Edit Modal -->
+    <div class="modal fade" id="serviceEditModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="serviceEditTitle">Modifier le service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="standardPriceInput" class="form-label">Prix standard (DH)</label>
+                        <input type="number" class="form-control" id="standardPriceInput" min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="expressPriceInput" class="form-label">Prix express (DH)</label>
+                        <input type="number" class="form-control" id="expressPriceInput" min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="serviceDescInput" class="form-label">Description</label>
+                        <textarea class="form-control" id="serviceDescInput" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="saveServiceBtn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in as admin
+            const currentUserStr = localStorage.getItem('currentUser');
+            if (!currentUserStr) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const currentUser = JSON.parse(currentUserStr);
+            
+            // If user is not admin, redirect to dashboard
+            if (!currentUser.isAdmin) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+            
+            // Set admin name
+            document.getElementById('adminName').textContent = currentUser.name || 'Administrateur';
+            
+            // Toggle sidebar on mobile
+            document.getElementById('sidebarToggle').addEventListener('click', function() {
+                document.querySelector('.admin-wrapper').classList.toggle('sidebar-collapsed');
+            });
+            
+            // Tab navigation
+            const menuItems = document.querySelectorAll('.menu-item');
+            const tabs = document.querySelectorAll('.admin-tab');
+            
+            menuItems.forEach(item => {
+                if (!item.dataset.tab) return; // Skip items without tabs (like logout)
+                
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all menu items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Hide all tabs
+                    tabs.forEach(tab => tab.classList.remove('active'));
+                    
+                    // Show selected tab
+                    document.getElementById(`${this.dataset.tab}Tab`).classList.add('active');
+                    
+                    // Update data for the selected tab
+                    if (this.dataset.tab === 'dashboard') {
+                        loadDashboardData();
+                    } else if (this.dataset.tab === 'orders') {
+                        loadOrdersData('all');
+                    } else if (this.dataset.tab === 'users') {
+                        loadUsersData();
+                    } else if (this.dataset.tab === 'services') {
+                        loadServicesData();
+                    }
+                });
+            });
+            
+            // Initial data load
+            loadDashboardData();
+            
+            // Order filter tabs
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Load filtered orders
+                    loadOrdersData(this.dataset.filter);
+                });
+            });
+            
+            // Order search
+            document.getElementById('orderSearchBtn').addEventListener('click', function() {
+                const searchQuery = document.getElementById('orderSearchInput').value.toLowerCase();
+                if (searchQuery.trim() === '') {
+                    // If search is empty, load all orders
+                    loadOrdersData('all');
+                    return;
+                }
+                
+                searchOrders(searchQuery);
+            });
+            
+            // Order search on enter
+            document.getElementById('orderSearchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('orderSearchBtn').click();
+                }
+            });
+            
+            // User search
+            document.getElementById('userSearchBtn').addEventListener('click', function() {
+                const searchQuery = document.getElementById('userSearchInput').value.toLowerCase();
+                if (searchQuery.trim() === '') {
+                    // If search is empty, load all users
+                    loadUsersData();
+                    return;
+                }
+                
+                searchUsers(searchQuery);
+            });
+            
+            // User search on enter
+            document.getElementById('userSearchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('userSearchBtn').click();
+                }
+            });
+            
+            // Order status update
+            let orderToUpdate = null;
+            
+            // Show status modal
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('update-status-btn')) {
+                    e.preventDefault();
+                    
+                    orderToUpdate = e.target.dataset.id;
+                    document.getElementById('updateOrderId').textContent = orderToUpdate.slice(-4);
+                    
+                    // Get current status
+                    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    const order = orders.find(o => o.id.toString() === orderToUpdate);
+                    
+                    if (order) {
+                        document.getElementById('orderStatusSelect').value = order.status;
+                    }
+                    
+                    const statusModal = new bootstrap.Modal(document.getElementById('orderStatusModal'));
+                    statusModal.show();
+                }
+            });
+            
+            // Save status button
+            document.getElementById('saveStatusBtn').addEventListener('click', function() {
+                if (!orderToUpdate) return;
+                
+                // Get selected status
+                const newStatus = document.getElementById('orderStatusSelect').value;
+                
+                // Get all orders
+                let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                
+                // Find the order
+                const orderIndex = orders.findIndex(o => o.id.toString() === orderToUpdate);
+                
+                if (orderIndex !== -1) {
+                    // Update status
+                    orders[orderIndex].status = newStatus;
+                    
+                    // Save back to localStorage
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    
+                    // Close modal
+                    const statusModal = bootstrap.Modal.getInstance(document.getElementById('orderStatusModal'));
+                    statusModal.hide();
+                    
+                    // Show success message
+                    showToast('Statut mis à jour avec succès');
+                    
+                    // Reload orders
+                    const activeFilter = document.querySelector('.filter-tab.active').dataset.filter;
+                    loadOrdersData(activeFilter);
+                    
+                    // Reset orderToUpdate
+                    orderToUpdate = null;
+                }
+            });
+            
+            // Service editing
+            let serviceToEdit = null;
+            
+            // Edit pressing service
+            document.getElementById('editPressingBtn').addEventListener('click', function() {
+                serviceToEdit = 'pressing';
+                document.getElementById('serviceEditTitle').textContent = 'Modifier le service Pressing';
+                document.getElementById('standardPriceInput').value = 50;
+                document.getElementById('expressPriceInput').value = 80;
+                document.getElementById('serviceDescInput').value = 'Service de nettoyage et repassage professionnel pour tous types de vêtements et textiles.';
+                
+                const serviceModal = new bootstrap.Modal(document.getElementById('serviceEditModal'));
+                serviceModal.show();
+            });
+            
+            // Edit car wash service
+            document.getElementById('editCarBtn').addEventListener('click', function() {
+                serviceToEdit = 'car';
+                document.getElementById('serviceEditTitle').textContent = 'Modifier le service Lavage Auto';
+                document.getElementById('standardPriceInput').value = 100;
+                document.getElementById('expressPriceInput').value = 130;
+                document.getElementById('serviceDescInput').value = 'Service de lavage complet pour véhicules, intérieur et extérieur, avec finition professionnelle.';
+                
+                const serviceModal = new bootstrap.Modal(document.getElementById('serviceEditModal'));
+                serviceModal.show();
+            });
+            
+            // Save service button (simulation)
+            document.getElementById('saveServiceBtn').addEventListener('click', function() {
+                if (!serviceToEdit) return;
+                
+                // Get values (not actually saving in this demo, just simulating)
+                const standardPrice = document.getElementById('standardPriceInput').value;
+                const expressPrice = document.getElementById('expressPriceInput').value;
+                
+                // Close modal
+                const serviceModal = bootstrap.Modal.getInstance(document.getElementById('serviceEditModal'));
+                serviceModal.hide();
+                
+                // Show success message
+                showToast('Service mis à jour avec succès');
+                
+                // Reset serviceToEdit
+                serviceToEdit = null;
+            });
+            
+            // Toggle service status (simulation)
+            document.getElementById('togglePressingBtn').addEventListener('click', function() {
+                const statusElement = document.querySelector('.service-status:first-of-type');
+                if (statusElement.classList.contains('active')) {
+                    statusElement.classList.remove('active');
+                    statusElement.classList.add('inactive');
+                    statusElement.textContent = 'Inactif';
+                    this.textContent = 'Activer';
+                } else {
+                    statusElement.classList.remove('inactive');
+                    statusElement.classList.add('active');
+                    statusElement.textContent = 'Actif';
+                    this.textContent = 'Désactiver';
+                }
+                
+                showToast('Statut du service mis à jour');
+            });
+            
+            document.getElementById('toggleCarBtn').addEventListener('click', function() {
+                const statusElement = document.querySelectorAll('.service-status')[1];
+                if (statusElement.classList.contains('active')) {
+                    statusElement.classList.remove('active');
+                    statusElement.classList.add('inactive');
+                    statusElement.textContent = 'Inactif';
+                    this.textContent = 'Activer';
+                } else {
+                    statusElement.classList.remove('inactive');
+                    statusElement.classList.add('active');
+                    statusElement.textContent = 'Actif';
+                    this.textContent = 'Désactiver';
+                }
+                
+                showToast('Statut du service mis à jour');
+            });
+            
+            // Logout functionality
+            document.getElementById('adminLogoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                showToast('Déconnexion réussie!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        });
+        
+        // Load dashboard data
+        function loadDashboardData() {
+            // Get all orders and users
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Count total orders
+            document.getElementById('totalOrdersCount').textContent = orders.length;
+            
+            // Count total users (excluding admin)
+            const regularUsers = users.filter(user => !user.isAdmin);
+            document.getElementById('totalUsersCount').textContent = regularUsers.length;
+            
+            // Count pending orders
+            const pendingOrders = orders.filter(order => order.status !== 'Livré');
+            document.getElementById('pendingOrdersCount').textContent = pendingOrders.length;
+            
+            // Calculate total revenue
+            const totalRevenue = orders.reduce((sum, order) => sum + order.price, 0);
+            document.getElementById('totalRevenue').textContent = `${totalRevenue} DH`;
+            
+            // Service type statistics
+            const pressingOrders = orders.filter(order => order.serviceType === 'pressing');
+            const carWashOrders = orders.filter(order => order.serviceType === 'car');
+            
+            const pressingPercentage = orders.length > 0 ? (pressingOrders.length / orders.length) * 100 : 0;
+            const carWashPercentage = orders.length > 0 ? (carWashOrders.length / orders.length) * 100 : 0;
+            
+            document.querySelector('#pressingChart .chart-fill').style.width = `${pressingPercentage}%`;
+            document.getElementById('pressingValue').textContent = `${Math.round(pressingPercentage)}%`;
+            
+            document.querySelector('#carWashChart .chart-fill').style.width = `${carWashPercentage}%`;
+            document.getElementById('carWashValue').textContent = `${Math.round(carWashPercentage)}%`;
+            
+            // Service speed statistics
+            const expressOrders = orders.filter(order => order.serviceSpeed === 'express');
+            const standardOrders = orders.filter(order => order.serviceSpeed === 'standard');
+            
+            const expressPercentage = orders.length > 0 ? (expressOrders.length / orders.length) * 100 : 0;
+            const standardPercentage = orders.length > 0 ? (standardOrders.length / orders.length) * 100 : 0;
+            
+            document.querySelector('#expressChart .chart-fill').style.width = `${expressPercentage}%`;
+            document.getElementById('expressValue').textContent = `${Math.round(expressPercentage)}%`;
+            
+            document.querySelector('#standardChart .chart-fill').style.width = `${standardPercentage}%`;
+            document.getElementById('standardValue').textContent = `${Math.round(standardPercentage)}%`;
+            
+            // Recent orders
+            const recentOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+            
+            const recentOrdersTable = document.getElementById('recentOrdersTable');
+            
+            if (recentOrders.length === 0) {
+                recentOrdersTable.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center">Aucune commande récente</td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            recentOrdersTable.innerHTML = '';
+            
+            recentOrders.forEach(order => {
+                const orderDate = new Date(order.date).toLocaleDateString('fr-FR');
+                const serviceType = order.serviceType === 'pressing' ? 'Pressing' : 'Lavage Auto';
+                
+                let statusClass = '';
+                switch(order.status) {
+                    case 'En cours de traitement':
+                        statusClass = 'text-secondary';
+                        break;
+                    case 'Lavage en cours':
+                        statusClass = 'text-primary';
+                        break;
+                    case 'En livraison':
+                        statusClass = 'text-warning';
+                        break;
+                    case 'Livré':
+                        statusClass = 'text-success';
+                        break;
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>#${order.id.toString().slice(-4)}</td>
+                    <td>${order.userName}</td>
+                    <td>${serviceType} (${order.serviceSpeed === 'express' ? 'Express' : 'Standard'})</td>
+                    <td>${orderDate}</td>
+                    <td><span class="${statusClass}">${order.status}</span></td>
+                    <td>${order.price} DH</td>
+                `;
+                
+                recentOrdersTable.appendChild(row);
+            });
+        }
+        
+        // Load orders data
+        function loadOrdersData(filter) {
+            // Get all orders
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Apply filter
+            if (filter !== 'all') {
+                switch(filter) {
+                    case 'processing':
+                        orders = orders.filter(order => order.status === 'En cours de traitement');
+                        break;
+                    case 'washing':
+                        orders = orders.filter(order => order.status === 'Lavage en cours');
+                        break;
+                    case 'delivery':
+                        orders = orders.filter(order => order.status === 'En livraison');
+                        break;
+                    case 'completed':
+                        orders = orders.filter(order => order.status === 'Livré');
+                        break;
+                }
+            }
+            
+            // Sort orders by date (newest first)
+            orders.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            displayOrders(orders);
+        }
+        
+        // Search orders
+        function searchOrders(query) {
+            // Get all orders
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Filter by search query
+            orders = orders.filter(order => {
+                const orderId = order.id.toString();
+                const userName = order.userName.toLowerCase();
+                const serviceType = order.serviceType === 'pressing' ? 'pressing' : 'lavage auto';
+                const serviceSpeed = order.serviceSpeed === 'express' ? 'express' : 'standard';
+                const status = order.status.toLowerCase();
+                const address = order.address.toLowerCase();
+                const city = order.city.toLowerCase();
+                
+                return orderId.includes(query) || 
+                       userName.includes(query) || 
+                       serviceType.includes(query) || 
+                       serviceSpeed.includes(query) || 
+                       status.includes(query) || 
+                       address.includes(query) || 
+                       city.includes(query);
+            });
+            
+            displayOrders(orders);
+        }
+        
+        // Display orders in table
+        function displayOrders(orders) {
+            const ordersTable = document.getElementById('ordersTable');
+            
+            if (orders.length === 0) {
+                ordersTable.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="text-center">Aucune commande trouvée</td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            ordersTable.innerHTML = '';
+            
+            orders.forEach(order => {
+                const orderDate = new Date(order.date).toLocaleDateString('fr-FR');
+                const serviceType = order.serviceType === 'pressing' ? 'Pressing' : 'Lavage Auto';
+                
+                let statusClass = '';
+                switch(order.status) {
+                    case 'En cours de traitement':
+                        statusClass = 'text-secondary';
+                        break;
+                    case 'Lavage en cours':
+                        statusClass = 'text-primary';
+                        break;
+                    case 'En livraison':
+                        statusClass = 'text-warning';
+                        break;
+                    case 'Livré':
+                        statusClass = 'text-success';
+                        break;
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>#${order.id.toString().slice(-4)}</td>
+                    <td>${order.userName}</td>
+                    <td>${serviceType} (${order.serviceSpeed === 'express' ? 'Express' : 'Standard'})</td>
+                    <td>${order.address}, ${order.city}</td>
+                    <td>${orderDate}</td>
+                    <td><span class="${statusClass}">${order.status}</span></td>
+                    <td>${order.price} DH</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary update-status-btn" data-id="${order.id}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                `;
+                
+                ordersTable.appendChild(row);
+            });
+        }
+        
+        // Load users data
+        function loadUsersData() {
+            // Get all users (excluding admin)
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const regularUsers = users.filter(user => !user.isAdmin);
+            
+            displayUsers(regularUsers);
+        }
+        
+        // Search users
+        function searchUsers(query) {
+            // Get all users (excluding admin)
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const regularUsers = users.filter(user => !user.isAdmin);
+            
+            // Filter by search query
+            const filteredUsers = regularUsers.filter(user => {
+                const userId = user.id.toString();
+                const userName = user.name.toLowerCase();
+                const userEmail = user.email.toLowerCase();
+                const userPhone = user.phone ? user.phone.toLowerCase() : '';
+                
+                return userId.includes(query) || 
+                       userName.includes(query) || 
+                       userEmail.includes(query) || 
+                       userPhone.includes(query);
+            });
+            
+            displayUsers(filteredUsers);
+        }
+        
+        // Display users in table
+        function displayUsers(users) {
+            const usersTable = document.getElementById('usersTable');
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            if (users.length === 0) {
+                usersTable.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center">Aucun utilisateur trouvé</td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            usersTable.innerHTML = '';
+            
+            users.forEach(user => {
+                // Count orders for this user
+                const userOrdersCount = orders.filter(order => order.userId === user.id).length;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>#${user.id.toString().slice(-4)}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone || 'Non renseigné'}</td>
+                    <td>${userOrdersCount}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                `;
+                
+                usersTable.appendChild(row);
+            });
+        }
+        
+        // Load services data
+        function loadServicesData() {
+            // Get all orders
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Count pressing orders and revenue
+            const pressingOrders = orders.filter(order => order.serviceType === 'pressing');
+            const pressingRevenue = pressingOrders.reduce((sum, order) => sum + order.price, 0);
+            
+            document.getElementById('pressingOrdersCount').textContent = pressingOrders.length;
+            document.getElementById('pressingRevenue').textContent = `${pressingRevenue} DH`;
+            
+            // Count car wash orders and revenue
+            const carOrders = orders.filter(order => order.serviceType === 'car');
+            const carRevenue = carOrders.reduce((sum, order) => sum + order.price, 0);
+            
+            document.getElementById('carOrdersCount').textContent = carOrders.length;
+            document.getElementById('carRevenue').textContent = `${carRevenue} DH`;
+        }
+    </script>
+</body>
+</html>

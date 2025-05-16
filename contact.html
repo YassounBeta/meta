@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Qui sommes-nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem" style="display: none;">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header py-5 mt-5">
+        <div class="container">
+            <h1 class="display-4 animate-slide-up">Contactez-nous</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <section class="contact-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0 animate-slide-left">
+                    <h2 class="section-title">Nous contacter</h2>
+                    <p class="lead text-primary mb-4">Nous sommes là pour vous aider.</p>
+                    <p class="mb-5">Vous avez des questions, des suggestions ou besoin d'assistance? N'hésitez pas à nous contacter. Notre équipe est disponible pour vous répondre dans les plus brefs délais.</p>
+                    
+                    <div class="contact-info-cards">
+                        <div class="contact-card animate-fade-in stagger-1">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Adresse</h5>
+                                <p>123 Avenue Mohammed V<br>Casablanca, Maroc</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card animate-fade-in stagger-2">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Téléphone</h5>
+                                <p>+212 522 123 456<br>+212 661 789 123</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card animate-fade-in stagger-3">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Email</h5>
+                                <p>contact@afrilavage.com<br>support@afrilavage.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card animate-fade-in stagger-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Horaires</h5>
+                                <p>Lundi - Samedi: 8h - 20h<br>Dimanche: Fermé</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links mt-4">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 animate-slide-right">
+                    <div class="contact-form-container">
+                        <h3 class="mb-4">Envoyez-nous un message</h3>
+                        <form id="contactForm" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Nom complet</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Sujet</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="" selected disabled>Choisir un sujet</option>
+                                    <option value="question">Question générale</option>
+                                    <option value="service">Renseignement sur les services</option>
+                                    <option value="complaint">Réclamation</option>
+                                    <option value="partnership">Partenariat</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Envoyer le message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="map-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 animate-fade-in">
+                    <div class="map-container">
+                        <h2 class="section-title text-center mb-5">Notre emplacement</h2>
+                        <div class="map-responsive">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106376.55530497229!2d-7.6651219346272115!3d33.57240973283259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd4778aa113b%3A0xb06c1d84f310fd3!2sCasablanca!5e0!3m2!1sfr!2sma!4v1684326320417!5m2!1sfr!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center animate-slide-up">
+                    <h2 class="section-title">Questions fréquentes</h2>
+                    <p class="lead mb-5">Consultez notre liste de questions fréquemment posées</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10 animate-fade-in">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                    Comment fonctionne votre service de ramassage et livraison?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Notre service est simple : vous commandez en ligne ou par téléphone, nous venons chercher vos vêtements ou votre véhicule à l'adresse indiquée, nous effectuons le lavage selon vos préférences, puis nous vous livrons le tout propre et parfumé à votre porte. Vous pouvez suivre l'état de votre commande en temps réel via notre application.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                    Quels sont vos délais de livraison?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Nous proposons deux options : le service standard (24h) et le service express (12h). Les délais exacts peuvent varier légèrement en fonction de votre emplacement et de la charge de travail, mais nous respectons toujours les délais promis.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                    Comment sont calculés vos tarifs?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Nos tarifs dépendent du type de service (lavage de vêtements ou de véhicule), de la quantité, des options spécifiques choisies et du délai de livraison souhaité. Vous pouvez obtenir un devis précis lors de votre commande. Nous proposons également des forfaits d'abonnement avantageux pour les utilisateurs réguliers.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                    Quels sont les modes de paiement acceptés?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Nous acceptons les paiements par carte bancaire, en espèces à la livraison, par virement bancaire, et via les applications de paiement mobile populaires au Maroc. Pour les clients réguliers, nous proposons également un système de facturation mensuelle.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                    Comment puis-je suivre ma commande?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Vous pouvez suivre votre commande en temps réel via notre site web ou notre application mobile. Connectez-vous à votre compte, accédez à la section "Suivi de commande" et vous pourrez voir exactement où en est votre commande. Vous recevrez également des notifications par SMS ou email à chaque étape importante.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0 animate-fade-in">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules partout au Maroc. La qualité et la rapidité sont nos priorités pour vous satisfaire pleinement.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0 animate-fade-in stagger-1">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                        <li><a href="order.html">Tarifs</a></li>
+                        <li><a href="#">Abonnements</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0 animate-fade-in stagger-2">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="about.html">Qui sommes-nous</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="tracking.html">Suivi</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 animate-fade-in stagger-3">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Casablanca, Maroc</li>
+                        <li><i class="fas fa-clock"></i> Lun-Sam: 8h-20h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2025 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        // Script pour le formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulation d'envoi de formulaire
+            const name = document.getElementById('name').value;
+            
+            // Afficher un message de confirmation
+            showToast(`Merci ${name} ! Votre message a été envoyé. Nous vous répondrons dans les plus brefs délais.`, 'success');
+            
+            // Réinitialiser le formulaire
+            this.reset();
+        });
+        
+        // Fonction pour afficher un toast de notification
+        function showToast(message, type = 'success') {
+            const toastContainer = document.createElement('div');
+            toastContainer.className = `toast-container position-fixed bottom-0 end-0 p-3`;
+            toastContainer.innerHTML = `
+                <div class="toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'}" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(toastContainer);
+            
+            const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
+            toast.show();
+            
+            // Supprimer le toast après un certain temps
+            setTimeout(() => {
+                toastContainer.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

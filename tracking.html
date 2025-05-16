@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de commande - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem" style="display: none;">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="tracking-section">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="tracking-card rounded-4 p-4 p-md-5">
+                        <div id="orderNotFound" style="display: none;" class="text-center py-5">
+                            <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+                            <h3 class="mb-3">Commande introuvable</h3>
+                            <p class="mb-4">Nous n'avons pas pu trouver la commande spécifiée.</p>
+                            <a href="order.html" class="btn btn-primary rounded-pill">Créer une nouvelle commande</a>
+                        </div>
+                        
+                        <div id="orderDetails">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2 class="tracking-title">Suivi de commande</h2>
+                                <div class="order-number">
+                                    <span>N° </span>
+                                    <span id="displayOrderId">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-info-box mb-4 rounded-4 p-3">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <div class="info-item">
+                                            <div class="info-label">Type de service</div>
+                                            <div class="info-value" id="orderServiceType">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="info-item">
+                                            <div class="info-label">Formule</div>
+                                            <div class="info-value" id="orderServiceSpeed">-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <div class="info-item">
+                                            <div class="info-label">Date de commande</div>
+                                            <div class="info-value" id="orderDate">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="info-item">
+                                            <div class="info-label">Livraison estimée</div>
+                                            <div class="info-value" id="estimatedDelivery">-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <div class="info-item">
+                                            <div class="info-label">Adresse</div>
+                                            <div class="info-value" id="orderAddress">-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="tracking-subtitle mb-4">Statut de la commande</h3>
+                            
+                            <div class="tracking-timeline mb-5">
+                                <div class="timeline-item" id="processStep">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-clipboard-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4 class="timeline-title">En cours de traitement</h4>
+                                        <p class="timeline-text">Votre commande a été reçue et est en cours de traitement.</p>
+                                        <div class="timeline-date" id="processDate">-</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item" id="washingStep">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-soap"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4 class="timeline-title">Lavage en cours</h4>
+                                        <p class="timeline-text">Nous prenons soin de vos articles avec des produits de qualité.</p>
+                                        <div class="timeline-date" id="washingDate">-</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item" id="deliveryStep">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-truck"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4 class="timeline-title">En livraison</h4>
+                                        <p class="timeline-text">Vos articles sont en route vers l'adresse indiquée.</p>
+                                        <div class="timeline-date" id="deliveryDate">-</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item" id="completedStep">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4 class="timeline-title">Livré</h4>
+                                        <p class="timeline-text">Votre commande a été livrée avec succès.</p>
+                                        <div class="timeline-date" id="completedDate">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="history.html" class="btn btn-outline-primary rounded-pill">Voir l'historique</a>
+                                <a href="order.html" class="btn btn-primary rounded-pill ms-2">Nouvelle commande</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules au Maroc.
+                    </p>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                        <li><a href="register.html">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope me-2"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Casablanca, Maroc</li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2023 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUserStr = localStorage.getItem('currentUser');
+            updateNavigation(currentUserStr);
+            
+            // Get order ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('id');
+            
+            // If no order ID, show error
+            if (!orderId) {
+                document.getElementById('orderDetails').style.display = 'none';
+                document.getElementById('orderNotFound').style.display = 'block';
+                return;
+            }
+            
+            // Get all orders from localStorage
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Find the specific order
+            const order = orders.find(o => o.id.toString() === orderId);
+            
+            // If order not found, show error
+            if (!order) {
+                document.getElementById('orderDetails').style.display = 'none';
+                document.getElementById('orderNotFound').style.display = 'block';
+                return;
+            }
+            
+            // Display order ID
+            document.getElementById('displayOrderId').textContent = order.id.toString().slice(-4);
+            
+            // Display service type
+            document.getElementById('orderServiceType').textContent = order.serviceType === 'pressing' ? 'Pressing' : 'Lavage Auto';
+            
+            // Display service speed
+            document.getElementById('orderServiceSpeed').textContent = order.serviceSpeed === 'express' ? 'Express (12h)' : 'Standard (24h)';
+            
+            // Display order date
+            const orderDate = new Date(order.date);
+            document.getElementById('orderDate').textContent = orderDate.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            
+            // Display address
+            document.getElementById('orderAddress').textContent = `${order.address}, ${order.city}`;
+            
+            // Calculate estimated delivery date
+            const deliveryHours = order.serviceSpeed === 'express' ? 12 : 24;
+            const estimatedDeliveryDate = new Date(orderDate.getTime() + (deliveryHours * 60 * 60 * 1000));
+            document.getElementById('estimatedDelivery').textContent = estimatedDeliveryDate.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }) + ' à ' + estimatedDeliveryDate.toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Update timeline based on order status
+            updateTimeline(order.status, orderDate);
+            
+            // Logout functionality
+            document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                updateNavigation(null);
+                showToast('Déconnexion réussie!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        });
+        
+        function updateTimeline(status, orderDate) {
+            // Reset all steps to inactive
+            document.getElementById('processStep').classList.remove('active', 'completed');
+            document.getElementById('washingStep').classList.remove('active', 'completed');
+            document.getElementById('deliveryStep').classList.remove('active', 'completed');
+            document.getElementById('completedStep').classList.remove('active', 'completed');
+            
+            // Hide all dates
+            document.getElementById('processDate').textContent = '-';
+            document.getElementById('washingDate').textContent = '-';
+            document.getElementById('deliveryDate').textContent = '-';
+            document.getElementById('completedDate').textContent = '-';
+            
+            // Initial processing date is always the order date
+            const processDate = orderDate;
+            document.getElementById('processDate').textContent = formatDate(processDate);
+            
+            // Calculate times for subsequent steps (simulated)
+            const washingDate = new Date(processDate.getTime() + (3 * 60 * 60 * 1000)); // 3 hours after process
+            const deliveryDate = new Date(washingDate.getTime() + (6 * 60 * 60 * 1000)); // 6 hours after washing
+            const completedDate = new Date(deliveryDate.getTime() + (2 * 60 * 60 * 1000)); // 2 hours after delivery
+            
+            // Update timeline based on current status
+            switch(status) {
+                case 'En cours de traitement':
+                    document.getElementById('processStep').classList.add('active');
+                    break;
+                    
+                case 'Lavage en cours':
+                    document.getElementById('processStep').classList.add('completed');
+                    document.getElementById('washingStep').classList.add('active');
+                    document.getElementById('washingDate').textContent = formatDate(washingDate);
+                    break;
+                    
+                case 'En livraison':
+                    document.getElementById('processStep').classList.add('completed');
+                    document.getElementById('washingStep').classList.add('completed');
+                    document.getElementById('deliveryStep').classList.add('active');
+                    document.getElementById('washingDate').textContent = formatDate(washingDate);
+                    document.getElementById('deliveryDate').textContent = formatDate(deliveryDate);
+                    break;
+                    
+                case 'Livré':
+                    document.getElementById('processStep').classList.add('completed');
+                    document.getElementById('washingStep').classList.add('completed');
+                    document.getElementById('deliveryStep').classList.add('completed');
+                    document.getElementById('completedStep').classList.add('active');
+                    document.getElementById('washingDate').textContent = formatDate(washingDate);
+                    document.getElementById('deliveryDate').textContent = formatDate(deliveryDate);
+                    document.getElementById('completedDate').textContent = formatDate(completedDate);
+                    break;
+            }
+        }
+        
+        function formatDate(date) {
+            return date.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'short'
+            }) + ' à ' + date.toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+    </script>
+</body>
+</html>

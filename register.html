@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem" style="display: none;">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="auth-section">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="auth-card rounded-4 p-4 p-md-5">
+                        <h2 class="auth-title text-center mb-4">Créer un compte</h2>
+                        <form id="registerForm">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Nom complet</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Votre nom complet" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Téléphone</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input type="tel" class="form-control" id="phone" placeholder="Votre numéro de téléphone" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="password" placeholder="Créer un mot de passe" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength mt-2">
+                                    <div class="strength-meter" id="strengthMeter"></div>
+                                    <small id="passwordStrengthText">Force du mot de passe</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmer votre mot de passe" required>
+                                </div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    J'accepte les <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">termes et conditions</a>
+                                </label>
+                            </div>
+                            <div id="registerError" class="alert alert-danger" style="display: none;"></div>
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill btn-lg">S'inscrire</button>
+                        </form>
+                        <div class="mt-4 text-center">
+                            <p>Vous avez déjà un compte? <a href="login.html" class="auth-link">Se connecter</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Termes et Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>1. Introduction</h6>
+                    <p>Bienvenue sur Afrilavage. En vous inscrivant sur notre plateforme, vous acceptez les présents termes et conditions d'utilisation.</p>
+                    
+                    <h6>2. Services</h6>
+                    <p>Afrilavage propose des services de lavage de vêtements et de véhicules au Maroc. Nos prestataires s'engagent à fournir un service de qualité dans les délais convenus.</p>
+                    
+                    <h6>3. Utilisation du service</h6>
+                    <p>Vous êtes responsable de l'exactitude des informations que vous fournissez lors de la commande. Afrilavage ne peut être tenu responsable des erreurs résultant d'informations incorrectes.</p>
+                    
+                    <h6>4. Annulation et remboursement</h6>
+                    <p>Les annulations sont possibles jusqu'à 2 heures avant l'heure prévue de collecte. Passé ce délai, le service sera facturé.</p>
+                    
+                    <h6>5. Confidentialité</h6>
+                    <p>Afrilavage s'engage à protéger vos données personnelles conformément à la législation en vigueur.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'ai compris</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules au Maroc.
+                    </p>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                        <li><a href="register.html">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope me-2"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Casablanca, Maroc</li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2023 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                // Redirect to dashboard if already logged in
+                window.location.href = 'dashboard.html';
+            }
+
+            // Toggle password visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+
+            // Password strength meter
+            const strengthMeter = document.getElementById('strengthMeter');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            password.addEventListener('input', function() {
+                const val = password.value;
+                let strength = 0;
+                
+                if (val.length >= 8) strength += 1;
+                if (val.match(/[a-z]+/)) strength += 1;
+                if (val.match(/[A-Z]+/)) strength += 1;
+                if (val.match(/[0-9]+/)) strength += 1;
+                if (val.match(/[^a-zA-Z0-9]+/)) strength += 1;
+                
+                switch(strength) {
+                    case 0:
+                        strengthMeter.style.width = '0%';
+                        strengthMeter.style.backgroundColor = '#D32F2F';
+                        strengthText.textContent = 'Force du mot de passe';
+                        break;
+                    case 1:
+                        strengthMeter.style.width = '20%';
+                        strengthMeter.style.backgroundColor = '#D32F2F';
+                        strengthText.textContent = 'Très faible';
+                        break;
+                    case 2:
+                        strengthMeter.style.width = '40%';
+                        strengthMeter.style.backgroundColor = '#FF5722';
+                        strengthText.textContent = 'Faible';
+                        break;
+                    case 3:
+                        strengthMeter.style.width = '60%';
+                        strengthMeter.style.backgroundColor = '#FFC107';
+                        strengthText.textContent = 'Moyen';
+                        break;
+                    case 4:
+                        strengthMeter.style.width = '80%';
+                        strengthMeter.style.backgroundColor = '#8BC34A';
+                        strengthText.textContent = 'Fort';
+                        break;
+                    case 5:
+                        strengthMeter.style.width = '100%';
+                        strengthMeter.style.backgroundColor = '#4CAF50';
+                        strengthText.textContent = 'Très fort';
+                        break;
+                }
+            });
+
+            // Form submission
+            const registerForm = document.getElementById('registerForm');
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const registerError = document.getElementById('registerError');
+                
+                // Validate passwords match
+                if (password !== confirmPassword) {
+                    registerError.textContent = 'Les mots de passe ne correspondent pas.';
+                    registerError.style.display = 'block';
+                    return;
+                }
+                
+                // Get existing users or initialize empty array
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                
+                // Check if email already exists
+                if (users.some(user => user.email === email)) {
+                    registerError.textContent = 'Cet email est déjà utilisé.';
+                    registerError.style.display = 'block';
+                    return;
+                }
+                
+                // Create new user
+                const newUser = {
+                    id: Date.now(), // simple unique ID
+                    name: fullName,
+                    email: email,
+                    phone: phone,
+                    password: password, // Note: In a real app, NEVER store passwords in plain text
+                    isAdmin: false
+                };
+                
+                // Add to users array
+                users.push(newUser);
+                
+                // Save back to localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Set as current user
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                // Show success message
+                showToast('Inscription réussie! Redirection...');
+                
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commander - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem" style="display: none;">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="order-section">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="order-card rounded-4 p-4 p-md-5">
+                        <h2 class="order-title text-center mb-4">Commander un service</h2>
+                        
+                        <!-- Stepper navigation -->
+                        <div class="order-steps mb-5">
+                            <div class="step-item active" id="step1Item">
+                                <div class="step-number">1</div>
+                                <div class="step-text">Service</div>
+                            </div>
+                            <div class="step-connector"></div>
+                            <div class="step-item" id="step2Item">
+                                <div class="step-number">2</div>
+                                <div class="step-text">Détails</div>
+                            </div>
+                            <div class="step-connector"></div>
+                            <div class="step-item" id="step3Item">
+                                <div class="step-number">3</div>
+                                <div class="step-text">Confirmation</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 1: Choose Service Type -->
+                        <div class="order-step" id="step1">
+                            <h3 class="step-title mb-4">Choisissez votre service</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="service-choice" data-service="pressing">
+                                        <div class="service-icon">
+                                            <i class="fas fa-tshirt"></i>
+                                        </div>
+                                        <h4 class="service-name">Pressing</h4>
+                                        <p class="service-desc">
+                                            Nettoyage professionnel pour tous vos vêtements et textiles.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="service-choice" data-service="car">
+                                        <div class="service-icon">
+                                            <i class="fas fa-car"></i>
+                                        </div>
+                                        <h4 class="service-name">Lavage Auto</h4>
+                                        <p class="service-desc">
+                                            Nettoyage complet de votre véhicule, intérieur et extérieur.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="step-title mb-4 mt-4">Choisissez votre formule</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="speed-choice" data-speed="express">
+                                        <div class="speed-icon">
+                                            <i class="fas fa-bolt"></i>
+                                        </div>
+                                        <h4 class="speed-name">Express</h4>
+                                        <p class="speed-desc">
+                                            Retour en 12h. Idéal pour les urgences.
+                                        </p>
+                                        <div class="speed-price">+30 DH</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="speed-choice" data-speed="standard">
+                                        <div class="speed-icon">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <h4 class="speed-name">Standard</h4>
+                                        <p class="speed-desc">
+                                            Retour en 24h. Notre formule classique.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button id="step1NextBtn" class="btn btn-primary btn-lg rounded-pill">Continuer</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Collection Details -->
+                        <div class="order-step" id="step2" style="display: none;">
+                            <h3 class="step-title mb-4">Détails de la collecte</h3>
+                            
+                            <form id="collectionForm">
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Adresse de collecte</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <input type="text" class="form-control" id="address" placeholder="Votre adresse complète" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="city" class="form-label">Ville</label>
+                                        <select class="form-select" id="city" required>
+                                            <option value="" selected disabled>Sélectionnez une ville</option>
+                                            <option value="Casablanca">Casablanca</option>
+                                            <option value="Rabat">Rabat</option>
+                                            <option value="Marrakech">Marrakech</option>
+                                            <option value="Tanger">Tanger</option>
+                                            <option value="Fès">Fès</option>
+                                            <option value="Meknès">Meknès</option>
+                                            <option value="Agadir">Agadir</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phoneNumber" class="form-label">Téléphone</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            <input type="tel" class="form-control" id="phoneNumber" placeholder="06XXXXXXXX" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="collectionDate" class="form-label">Date de collecte</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            <input type="date" class="form-control" id="collectionDate" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="collectionTime" class="form-label">Heure de collecte</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                            <select class="form-select" id="collectionTime" required>
+                                                <option value="" selected disabled>Choisir une heure</option>
+                                                <option value="09:00">09:00 - 10:00</option>
+                                                <option value="10:00">10:00 - 11:00</option>
+                                                <option value="11:00">11:00 - 12:00</option>
+                                                <option value="12:00">12:00 - 13:00</option>
+                                                <option value="14:00">14:00 - 15:00</option>
+                                                <option value="15:00">15:00 - 16:00</option>
+                                                <option value="16:00">16:00 - 17:00</option>
+                                                <option value="17:00">17:00 - 18:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="instructions" class="form-label">Instructions spéciales (optionnel)</label>
+                                    <textarea class="form-control" id="instructions" rows="3" placeholder="Instructions pour la collecte ou le traitement..."></textarea>
+                                </div>
+                            </form>
+                            
+                            <div class="text-center mt-4">
+                                <button id="step2BackBtn" class="btn btn-outline-primary rounded-pill me-2">Retour</button>
+                                <button id="step2NextBtn" class="btn btn-primary rounded-pill">Continuer</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Confirmation -->
+                        <div class="order-step" id="step3" style="display: none;">
+                            <h3 class="step-title mb-4">Confirmer votre commande</h3>
+                            
+                            <div class="order-summary rounded-4 p-4 mb-4">
+                                <h4 class="summary-title mb-3">Récapitulatif</h4>
+                                
+                                <div class="summary-item">
+                                    <span class="item-label">Service :</span>
+                                    <span class="item-value" id="summaryService"></span>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <span class="item-label">Formule :</span>
+                                    <span class="item-value" id="summarySpeed"></span>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <span class="item-label">Adresse :</span>
+                                    <span class="item-value" id="summaryAddress"></span>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <span class="item-label">Date de collecte :</span>
+                                    <span class="item-value" id="summaryDateTime"></span>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <span class="item-label">Téléphone :</span>
+                                    <span class="item-value" id="summaryPhone"></span>
+                                </div>
+                                
+                                <div class="summary-item" id="summaryInstructionsContainer" style="display: none;">
+                                    <span class="item-label">Instructions :</span>
+                                    <span class="item-value" id="summaryInstructions"></span>
+                                </div>
+                                
+                                <hr class="summary-divider">
+                                
+                                <div class="summary-pricing">
+                                    <div class="price-item">
+                                        <span>Prix de base</span>
+                                        <span id="basePrice">0 DH</span>
+                                    </div>
+                                    <div class="price-item" id="expressChargeContainer" style="display: none;">
+                                        <span>Supplément Express</span>
+                                        <span id="expressCharge">30 DH</span>
+                                    </div>
+                                    <div class="price-item total-price">
+                                        <span>Total</span>
+                                        <span id="totalPrice">0 DH</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method mb-4">
+                                <h4 class="summary-title mb-3">Mode de paiement</h4>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" checked>
+                                    <label class="form-check-label" for="cashOnDelivery">
+                                        <i class="fas fa-money-bill-wave me-2"></i> Paiement à la livraison
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button id="step3BackBtn" class="btn btn-outline-primary rounded-pill me-2">Modifier</button>
+                                <button id="placeOrderBtn" class="btn btn-primary btn-lg rounded-pill">Confirmer la commande</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="confirmation-icon mb-3">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="confirmation-title mb-3">Commande réussie!</h3>
+                    <p class="confirmation-text mb-2">
+                        Votre commande a été enregistrée avec succès.
+                    </p>
+                    <p class="order-number mb-4">
+                        Numéro de commande: <strong id="confirmationOrderId"></strong>
+                    </p>
+                    <div class="next-steps">
+                        <a href="tracking.html" id="trackOrderLink" class="btn btn-primary rounded-pill mb-2">Suivre ma commande</a>
+                        <a href="dashboard.html" class="btn btn-outline-primary rounded-pill">Retour au tableau de bord</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules au Maroc.
+                    </p>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                        <li><a href="register.html">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope me-2"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Casablanca, Maroc</li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2023 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUserStr = localStorage.getItem('currentUser');
+            updateNavigation(currentUserStr);
+            
+            // Set min date for collection date (today)
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('collectionDate').min = formattedDate;
+            document.getElementById('collectionDate').value = formattedDate;
+            
+            // Get URL parameters to pre-select service if any
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceParam = urlParams.get('service');
+            
+            // Order data object
+            let orderData = {
+                serviceType: serviceParam || '',
+                serviceSpeed: '',
+                address: '',
+                city: '',
+                phone: '',
+                collectionDate: '',
+                collectionTime: '',
+                instructions: ''
+            };
+            
+            // Service and speed selection
+            const serviceChoices = document.querySelectorAll('.service-choice');
+            const speedChoices = document.querySelectorAll('.speed-choice');
+            
+            // Pre-select service if URL parameter exists
+            if (serviceParam) {
+                serviceChoices.forEach(choice => {
+                    if (choice.dataset.service === serviceParam) {
+                        choice.classList.add('selected');
+                        orderData.serviceType = serviceParam;
+                    }
+                });
+            }
+            
+            // Service selection
+            serviceChoices.forEach(choice => {
+                choice.addEventListener('click', function() {
+                    // Remove selected class from all choices
+                    serviceChoices.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add selected class to clicked choice
+                    this.classList.add('selected');
+                    
+                    // Update order data
+                    orderData.serviceType = this.dataset.service;
+                });
+            });
+            
+            // Speed selection
+            speedChoices.forEach(choice => {
+                choice.addEventListener('click', function() {
+                    // Remove selected class from all choices
+                    speedChoices.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add selected class to clicked choice
+                    this.classList.add('selected');
+                    
+                    // Update order data
+                    orderData.serviceSpeed = this.dataset.speed;
+                });
+            });
+            
+            // Step navigation
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+            
+            const step1Item = document.getElementById('step1Item');
+            const step2Item = document.getElementById('step2Item');
+            const step3Item = document.getElementById('step3Item');
+            
+            // Step 1 Next button
+            document.getElementById('step1NextBtn').addEventListener('click', function() {
+                // Validate selections
+                if (!orderData.serviceType) {
+                    showToast('Veuillez choisir un type de service.', 'error');
+                    return;
+                }
+                
+                if (!orderData.serviceSpeed) {
+                    showToast('Veuillez choisir une formule.', 'error');
+                    return;
+                }
+                
+                // Check if user is logged in
+                if (!currentUserStr) {
+                    // Redirect to login
+                    localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+                    showToast('Veuillez vous connecter pour continuer.', 'info');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                    return;
+                }
+                
+                // Move to step 2
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                
+                // Update stepper
+                step1Item.classList.remove('active');
+                step1Item.classList.add('completed');
+                step2Item.classList.add('active');
+                
+                // Pre-fill phone if available
+                const currentUser = JSON.parse(currentUserStr);
+                if (currentUser.phone) {
+                    document.getElementById('phoneNumber').value = currentUser.phone;
+                }
+            });
+            
+            // Step 2 Back button
+            document.getElementById('step2BackBtn').addEventListener('click', function() {
+                // Move back to step 1
+                step2.style.display = 'none';
+                step1.style.display = 'block';
+                
+                // Update stepper
+                step2Item.classList.remove('active');
+                step1Item.classList.remove('completed');
+                step1Item.classList.add('active');
+            });
+            
+            // Step 2 Next button
+            document.getElementById('step2NextBtn').addEventListener('click', function() {
+                // Validate form
+                const collectionForm = document.getElementById('collectionForm');
+                if (!collectionForm.checkValidity()) {
+                    collectionForm.reportValidity();
+                    return;
+                }
+                
+                // Update order data with form values
+                orderData.address = document.getElementById('address').value;
+                orderData.city = document.getElementById('city').value;
+                orderData.phone = document.getElementById('phoneNumber').value;
+                orderData.collectionDate = document.getElementById('collectionDate').value;
+                orderData.collectionTime = document.getElementById('collectionTime').value;
+                orderData.instructions = document.getElementById('instructions').value;
+                
+                // Update summary
+                updateOrderSummary();
+                
+                // Move to step 3
+                step2.style.display = 'none';
+                step3.style.display = 'block';
+                
+                // Update stepper
+                step2Item.classList.remove('active');
+                step2Item.classList.add('completed');
+                step3Item.classList.add('active');
+            });
+            
+            // Step 3 Back button
+            document.getElementById('step3BackBtn').addEventListener('click', function() {
+                // Move back to step 2
+                step3.style.display = 'none';
+                step2.style.display = 'block';
+                
+                // Update stepper
+                step3Item.classList.remove('active');
+                step2Item.classList.remove('completed');
+                step2Item.classList.add('active');
+            });
+            
+            // Place Order button
+            document.getElementById('placeOrderBtn').addEventListener('click', function() {
+                // Get current user
+                const currentUser = JSON.parse(currentUserStr);
+                
+                // Generate order ID
+                const orderId = Date.now();
+                
+                // Create full order object
+                const order = {
+                    id: orderId,
+                    userId: currentUser.id,
+                    userName: currentUser.name,
+                    ...orderData,
+                    date: new Date().toISOString(),
+                    status: 'En cours de traitement',
+                    paymentMethod: 'Paiement à la livraison',
+                    price: calculatePrice()
+                };
+                
+                // Get existing orders or initialize empty array
+                let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                
+                // Add new order
+                orders.push(order);
+                
+                // Save back to localStorage
+                localStorage.setItem('orders', JSON.stringify(orders));
+                
+                // Set confirmation order ID
+                document.getElementById('confirmationOrderId').textContent = orderId.toString().slice(-4);
+                
+                // Update tracking link
+                document.getElementById('trackOrderLink').href = `tracking.html?id=${orderId}`;
+                
+                // Show confirmation modal
+                const confirmationModal = new bootstrap.Modal(document.getElementById('orderConfirmationModal'));
+                confirmationModal.show();
+            });
+            
+            // Function to update order summary
+            function updateOrderSummary() {
+                // Service type
+                const serviceText = orderData.serviceType === 'pressing' ? 'Pressing' : 'Lavage Auto';
+                document.getElementById('summaryService').textContent = serviceText;
+                
+                // Service speed
+                const speedText = orderData.serviceSpeed === 'express' ? 'Express (12h)' : 'Standard (24h)';
+                document.getElementById('summarySpeed').textContent = speedText;
+                
+                // Address
+                const fullAddress = `${orderData.address}, ${orderData.city}`;
+                document.getElementById('summaryAddress').textContent = fullAddress;
+                
+                // Date and time
+                const dateObj = new Date(orderData.collectionDate);
+                const formattedDate = dateObj.toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                document.getElementById('summaryDateTime').textContent = `${formattedDate} à ${orderData.collectionTime}`;
+                
+                // Phone
+                document.getElementById('summaryPhone').textContent = orderData.phone;
+                
+                // Instructions (if any)
+                if (orderData.instructions) {
+                    document.getElementById('summaryInstructions').textContent = orderData.instructions;
+                    document.getElementById('summaryInstructionsContainer').style.display = 'flex';
+                } else {
+                    document.getElementById('summaryInstructionsContainer').style.display = 'none';
+                }
+                
+                // Pricing
+                // Base prices
+                const basePrice = orderData.serviceType === 'pressing' ? 50 : 100;
+                document.getElementById('basePrice').textContent = `${basePrice} DH`;
+                
+                // Express charge
+                if (orderData.serviceSpeed === 'express') {
+                    document.getElementById('expressChargeContainer').style.display = 'flex';
+                } else {
+                    document.getElementById('expressChargeContainer').style.display = 'none';
+                }
+                
+                // Total price
+                const totalPrice = calculatePrice();
+                document.getElementById('totalPrice').textContent = `${totalPrice} DH`;
+            }
+            
+            // Function to calculate total price
+            function calculatePrice() {
+                const basePrice = orderData.serviceType === 'pressing' ? 50 : 100;
+                const expressCharge = orderData.serviceSpeed === 'express' ? 30 : 0;
+                return basePrice + expressCharge;
+            }
+            
+            // Logout functionality
+            document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                updateNavigation(null);
+                showToast('Déconnexion réussie!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Afrilavage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Afrilavage</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">Commander</a>
+                    </li>
+                    <li class="nav-item" id="historyNavItem">
+                        <a class="nav-link" href="history.html">Historique</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem" style="display: none;">
+                        <a class="nav-link" href="login.html">Connexion</a>
+                    </li>
+                    <li class="nav-item" id="accountNavItem">
+                        <a class="nav-link active" href="dashboard.html">Mon compte</a>
+                    </li>
+                    <li class="nav-item" id="logoutNavItem">
+                        <a class="nav-link" href="#" id="logoutBtn">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="dashboard-section">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="dashboard-card user-profile rounded-4 p-4 h-100">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3 class="user-name mb-3" id="userName">Chargement...</h3>
+                        <div class="user-details">
+                            <p><i class="fas fa-envelope me-2"></i> <span id="userEmail">chargement@email.com</span></p>
+                            <p><i class="fas fa-phone me-2"></i> <span id="userPhone">+212 600 000000</span></p>
+                        </div>
+                        <button class="btn btn-outline-primary rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                            Modifier le profil
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-8 mb-4">
+                    <div class="dashboard-card active-orders rounded-4 p-4 h-100">
+                        <h3 class="card-title mb-4">
+                            <i class="fas fa-sync-alt me-2"></i> Commandes actives
+                        </h3>
+                        <div id="activeOrdersContainer" class="orders-container">
+                            <div class="placeholder-text text-center py-4" id="noActiveOrdersMsg">
+                                <i class="fas fa-inbox fa-3x mb-3 text-muted"></i>
+                                <p>Aucune commande active pour le moment.</p>
+                                <a href="order.html" class="btn btn-primary rounded-pill mt-2">Créer une nouvelle commande</a>
+                            </div>
+                            <!-- Active orders will be dynamically loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card quick-stats rounded-4 p-4 h-100">
+                        <h3 class="card-title mb-4">
+                            <i class="fas fa-chart-line me-2"></i> Statistiques
+                        </h3>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="stat-card">
+                                    <div class="stat-icon"><i class="fas fa-tshirt"></i></div>
+                                    <div class="stat-content">
+                                        <h4 class="stat-number" id="pressingCount">0</h4>
+                                        <p class="stat-name">Pressing</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="stat-card">
+                                    <div class="stat-icon"><i class="fas fa-car"></i></div>
+                                    <div class="stat-content">
+                                        <h4 class="stat-number" id="carWashCount">0</h4>
+                                        <p class="stat-name">Lavage auto</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                                    <div class="stat-content">
+                                        <h4 class="stat-number" id="expressCount">0</h4>
+                                        <p class="stat-name">Express</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
+                                    <div class="stat-content">
+                                        <h4 class="stat-number" id="standardCount">0</h4>
+                                        <p class="stat-name">Standard</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="dashboard-card recent-activity rounded-4 p-4 h-100">
+                        <h3 class="card-title mb-4">
+                            <i class="fas fa-history me-2"></i> Activité récente
+                        </h3>
+                        <div class="activity-list" id="recentActivityList">
+                            <p class="text-center text-muted" id="noActivityMsg">Aucune activité récente</p>
+                            <!-- Activity items will be dynamically loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Modifier le profil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="mb-3">
+                            <label for="editName" class="form-label">Nom complet</label>
+                            <input type="text" class="form-control" id="editName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPhone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="editPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Mot de passe actuel</label>
+                            <input type="password" class="form-control" id="currentPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">Nouveau mot de passe (laissez vide pour ne pas changer)</label>
+                            <input type="password" class="form-control" id="newPassword">
+                        </div>
+                        <div id="updateError" class="alert alert-danger" style="display: none;"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="saveProfileBtn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Afrilavage</h5>
+                    <p class="footer-text">
+                        Service de lavage premium pour vos vêtements et véhicules au Maroc.
+                    </p>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="order.html?service=pressing">Pressing</a></li>
+                        <li><a href="order.html?service=car">Lavage Auto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Liens</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="order.html">Commander</a></li>
+                        <li><a href="history.html">Historique</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope me-2"></i> contact@afrilavage.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +212 522 123 456</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Casablanca, Maroc</li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2023 Afrilavage. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUserStr = localStorage.getItem('currentUser');
+            if (!currentUserStr) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const currentUser = JSON.parse(currentUserStr);
+            
+            // If user is admin, redirect to admin page
+            if (currentUser.isAdmin) {
+                window.location.href = 'admin.html';
+                return;
+            }
+            
+            // Update navigation
+            updateNavigation(currentUserStr);
+            
+            // Load user profile
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userEmail').textContent = currentUser.email;
+            document.getElementById('userPhone').textContent = currentUser.phone || 'Non renseigné';
+            
+            // Fill edit form
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editEmail').value = currentUser.email;
+            document.getElementById('editPhone').value = currentUser.phone || '';
+            
+            // Save profile changes
+            document.getElementById('saveProfileBtn').addEventListener('click', function() {
+                const editName = document.getElementById('editName').value;
+                const editEmail = document.getElementById('editEmail').value;
+                const editPhone = document.getElementById('editPhone').value;
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const updateError = document.getElementById('updateError');
+                
+                // Validate current password
+                if (currentPassword !== currentUser.password) {
+                    updateError.textContent = 'Mot de passe actuel incorrect.';
+                    updateError.style.display = 'block';
+                    return;
+                }
+                
+                // Get all users
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                
+                // Find the current user
+                const userIndex = users.findIndex(u => u.id === currentUser.id);
+                if (userIndex === -1) {
+                    updateError.textContent = 'Erreur: utilisateur non trouvé.';
+                    updateError.style.display = 'block';
+                    return;
+                }
+                
+                // Update user data
+                users[userIndex].name = editName;
+                users[userIndex].email = editEmail;
+                users[userIndex].phone = editPhone;
+                
+                // Update password if provided
+                if (newPassword) {
+                    users[userIndex].password = newPassword;
+                }
+                
+                // Save updated users to localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Update current user
+                currentUser.name = editName;
+                currentUser.email = editEmail;
+                currentUser.phone = editPhone;
+                if (newPassword) {
+                    currentUser.password = newPassword;
+                }
+                
+                // Save updated current user
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Close modal and show success message
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
+                modal.hide();
+                
+                showToast('Profil mis à jour avec succès!');
+                
+                // Update displayed info
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('userPhone').textContent = currentUser.phone || 'Non renseigné';
+            });
+            
+            // Load active orders
+            loadActiveOrders();
+            
+            // Load statistics
+            loadStatistics();
+            
+            // Load recent activity
+            loadRecentActivity();
+            
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                showToast('Déconnexion réussie!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        });
+        
+        // Function to load active orders
+        function loadActiveOrders() {
+            // Get current user
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Get all orders from localStorage
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Filter orders for current user that are not completed
+            const activeOrders = orders.filter(order => 
+                order.userId === currentUser.id && 
+                order.status !== 'Livré'
+            );
+            
+            const activeOrdersContainer = document.getElementById('activeOrdersContainer');
+            const noActiveOrdersMsg = document.getElementById('noActiveOrdersMsg');
+            
+            if (activeOrders.length === 0) {
+                // Show no orders message
+                noActiveOrdersMsg.style.display = 'block';
+                return;
+            }
+            
+            // Hide no orders message
+            noActiveOrdersMsg.style.display = 'none';
+            
+            // Display active orders
+            activeOrders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card mb-3';
+                
+                // Determine icon based on service type
+                const icon = order.serviceType === 'pressing' ? 'fas fa-tshirt' : 'fas fa-car';
+                
+                // Determine status class
+                let statusClass = '';
+                switch(order.status) {
+                    case 'En cours de traitement':
+                        statusClass = 'status-processing';
+                        break;
+                    case 'Lavage en cours':
+                        statusClass = 'status-washing';
+                        break;
+                    case 'En livraison':
+                        statusClass = 'status-delivery';
+                        break;
+                }
+                
+                orderCard.innerHTML = `
+                    <div class="order-header">
+                        <div class="d-flex align-items-center">
+                            <i class="${icon} me-2"></i>
+                            <h5 class="order-number mb-0">Commande #${order.id.toString().slice(-4)}</h5>
+                        </div>
+                        <span class="order-date">${new Date(order.date).toLocaleDateString()}</span>
+                    </div>
+                    <div class="order-info">
+                        <p><strong>Type:</strong> ${order.serviceType === 'pressing' ? 'Pressing' : 'Lavage Auto'}</p>
+                        <p><strong>Formule:</strong> ${order.serviceSpeed === 'express' ? 'Express (12h)' : 'Standard (24h)'}</p>
+                        <p><strong>Adresse:</strong> ${order.address}</p>
+                    </div>
+                    <div class="order-status">
+                        <div class="status-badge ${statusClass}">${order.status}</div>
+                        <a href="tracking.html?id=${order.id}" class="btn btn-sm btn-outline-primary rounded-pill">Suivre</a>
+                    </div>
+                `;
+                
+                activeOrdersContainer.appendChild(orderCard);
+            });
+        }
+        
+        // Function to load statistics
+        function loadStatistics() {
+            // Get current user
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Get all orders from localStorage
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Filter orders for current user
+            const userOrders = orders.filter(order => order.userId === currentUser.id);
+            
+            // Count different types
+            const pressingCount = userOrders.filter(order => order.serviceType === 'pressing').length;
+            const carWashCount = userOrders.filter(order => order.serviceType === 'car').length;
+            const expressCount = userOrders.filter(order => order.serviceSpeed === 'express').length;
+            const standardCount = userOrders.filter(order => order.serviceSpeed === 'standard').length;
+            
+            // Update the UI
+            document.getElementById('pressingCount').textContent = pressingCount;
+            document.getElementById('carWashCount').textContent = carWashCount;
+            document.getElementById('expressCount').textContent = expressCount;
+            document.getElementById('standardCount').textContent = standardCount;
+        }
+        
+        // Function to load recent activity
+        function loadRecentActivity() {
+            // Get current user
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Get all orders from localStorage
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Filter orders for current user and sort by date (most recent first)
+            const userOrders = orders
+                .filter(order => order.userId === currentUser.id)
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5); // Get only the 5 most recent
+            
+            const activityList = document.getElementById('recentActivityList');
+            const noActivityMsg = document.getElementById('noActivityMsg');
+            
+            if (userOrders.length === 0) {
+                // Show no activity message
+                noActivityMsg.style.display = 'block';
+                return;
+            }
+            
+            // Hide no activity message
+            noActivityMsg.style.display = 'none';
+            
+            // Clear previous items
+            activityList.innerHTML = '';
+            
+            // Add activity items
+            userOrders.forEach(order => {
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+                
+                // Determine icon based on service type
+                const icon = order.serviceType === 'pressing' ? 'fas fa-tshirt' : 'fas fa-car';
+                
+                // Format date
+                const orderDate = new Date(order.date);
+                const formattedDate = orderDate.toLocaleDateString('fr-FR', {
+                    day: 'numeric', 
+                    month: 'short'
+                });
+                
+                activityItem.innerHTML = `
+                    <div class="activity-icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p>
+                            <strong>Commande #${order.id.toString().slice(-4)}</strong> - 
+                            ${order.serviceType === 'pressing' ? 'Pressing' : 'Lavage Auto'} 
+                            (${order.serviceSpeed === 'express' ? 'Express' : 'Standard'})
+                        </p>
+                        <p class="activity-status">Statut: ${order.status}</p>
+                        <small class="activity-date">${formattedDate}</small>
+                    </div>
+                `;
+                
+                activityList.appendChild(activityItem);
+            });
+        }
+    </script>
+</body>
+</html>
